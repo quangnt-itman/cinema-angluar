@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="mx-auto col-sm-6">
+      <form [formGroup]="signinForm" (ngSubmit)="dangNhap()">
+        <div class="form-group">
+          <label for="">Tài khoản</label>
+          <input type="text" class="form-control" formControlName="taiKhoan" />
+          <div
+            *ngIf="
+              signinForm.get('taiKhoan').invalid &&
+              (signinForm.get('taiKhoan').touched ||
+                signinForm.get('taiKhoan').dirty)
+            "
+          >
+            <div *ngIf="signinForm.get('taiKhoan').errors.required">
+              Tài khoản không được để trống
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">Mật khẩu</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="matKhau"
+          />
+          <div
+            *ngIf="
+              signinForm.get('matKhau').invalid &&
+              (signinForm.get('matKhau').touched ||
+                signinForm.get('matKhau').dirty)
+            "
+          >
+            <div *ngIf="signinForm.get('matKhau').errors.required">
+              Mật khẩu không được để trống
+            </div>
+            <div
+              *ngIf="
+                signinForm.get('matKhau').errors.minlength ||
+                signinForm.get('matKhau').errors.maxlength
+              "
+            >
+              Mật khẩu từ 4 - 20 ký tự
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success">Đăng Nhập</button>
+      </form>
+    </div>
+  </div>
+</div>
